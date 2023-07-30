@@ -5,7 +5,6 @@ const Timer = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [overtime, setOvertime] = React.useState(false);
 
   const calculateTime = () => {
     //Calc hours
@@ -19,11 +18,9 @@ const Timer = () => {
   };
 
   const runTimer = () => {
-    // if (overtime) return;
-
     if (hours === 0 && minutes === 0 && seconds === 0) {
       return;
-    } else if (minutes === 0) {
+    } else if (minutes === 0 && hours > 0) {
       setHours((prev) => prev - 1);
       setMinutes(59);
     } else if (seconds === 0) {
@@ -34,16 +31,9 @@ const Timer = () => {
     }
   };
 
-  const reset = () => {
-    setHours(0);
-    setMinutes(0);
-    setSeconds(0);
-    setOvertime(false);
-  };
-
   useEffect(() => {
     console.log(`Total hours ${hours} minutes ${minutes} seconds ${seconds}`);
-    const timerID = setInterval(() => runTimer(), 10);
+    const timerID = setInterval(() => runTimer(), 1);
 
     return () => clearInterval(timerID);
   });
