@@ -33,7 +33,7 @@ const Timer = () => {
 
   useEffect(() => {
     console.log(`Total hours ${hours} minutes ${minutes} seconds ${seconds}`);
-    const timerID = setInterval(() => runTimer(), 1);
+    const timerID = setInterval(() => runTimer(), 1000);
 
     return () => clearInterval(timerID);
   });
